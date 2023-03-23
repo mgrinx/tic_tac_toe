@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/board.dart';
 
 import 'model/boards.dart';
-import 'model/game.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(
-          grid: defaultGridIdx),
+      home: const MyHomePage(grid: defaultGridIdx),
     );
   }
 }
@@ -58,19 +56,21 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
                     boards.keys.elementAt(widget.grid),
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
-                  BoardView(board: boards.entries.first.value),
+                  BoardView(board: boards.entries.toList()[widget.grid].value),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const GridsPage()),
+                        MaterialPageRoute(
+                            builder: (context) => const GridsPage()),
                       );
                     },
                     child: const Text('Choose grid'),
