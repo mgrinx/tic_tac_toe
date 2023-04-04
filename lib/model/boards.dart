@@ -1,6 +1,6 @@
 import 'game.dart';
 
-const boards = <String, Board>{
+final boards = <String, Board>{
   'Classic': [
     [CellState.empty, CellState.empty, CellState.empty],
     [CellState.empty, CellState.empty, CellState.empty],

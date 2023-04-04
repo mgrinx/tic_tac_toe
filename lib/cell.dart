@@ -24,16 +24,8 @@ class _CellViewState extends State<CellView> {
   static const _size = 40.0;
 
   void handleTap() {
-    // switch (_state) {
-    //   case CellState.x:
-    //   case CellState.o:
-    //   case CellState.outside:
-    //     break;
-    //   case CellState.empty:
-    //     _state = CellState.x;
-    //     break;
-    // }
-    // setState(() {});
+    widget.game.updateCellOnTap(widget.x, widget.y);
+    setState(() {});
   }
 
   CellState get _state => widget.game.cellState(widget.x, widget.y);
