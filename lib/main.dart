@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static Game _createGame(int index) {
-    return Game(boards.entries.toList()[index].value);
+    return Game(createBoard(index));
   }
 
   @override
@@ -70,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    boards.keys.elementAt(_grid.value),
+                    boardTemplates.keys.elementAt(_grid.value),
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
@@ -78,10 +78,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
+                      setState(() {
+                        _game = _createGame(_grid.value);
+                      });
+                    },
+                    child: const Text('Reset'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            // TODO: fix circular reference
                             builder: (context) => GridsPage(grid: _grid)),
                       );
                     },

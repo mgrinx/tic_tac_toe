@@ -5,17 +5,15 @@ import 'model/boards.dart';
 class GridsPage extends StatelessWidget {
   GridsPage({super.key, required this.grid});
 
-  static const String title = 'Choose grid';
-
   final ValueNotifier<int> grid;
 
-  final List boardsList = boards.keys.toList();
+  final List boardsList = boardTemplates.keys.toList();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(GridsPage.title),
+          title: const Text('Choose grid'),
         ),
         body: LayoutBuilder(builder: (context, constraints) {
           return SafeArea(
@@ -70,7 +68,7 @@ class SelectGrid extends StatelessWidget {
             color: Colors.amber[300],
             child: Center(
                 child: Text(
-              boards.keys.elementAt(grid),
+              boardTemplates.keys.elementAt(grid),
               style: textStyle,
               textAlign: TextAlign.center,
             ))),
