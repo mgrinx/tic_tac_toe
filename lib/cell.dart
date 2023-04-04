@@ -2,33 +2,41 @@ import 'package:flutter/material.dart';
 
 import 'model/game.dart';
 
-class Cell extends StatefulWidget {
-  const Cell(int i, {super.key, this.state = CellState.x});
+class CellView extends StatefulWidget {
+  const CellView({
+    super.key,
+    required this.game,
+    required this.x,
+    required this.y,
+  });
 
-  final CellState state;
+  final Game game;
+  final int x;
+  final int y;
 
   @override
-  State<Cell> createState() => _CellState(state);
+  State<CellView> createState() => _CellViewState();
 }
 
-class _CellState extends State<Cell> {
-  _CellState(this._state);
+class _CellViewState extends State<CellView> {
+  _CellViewState();
 
-  CellState _state;
   static const _size = 40.0;
 
   void handleTap() {
-    switch (_state) {
-      case CellState.x:
-      case CellState.o:
-      case CellState.outside:
-        break;
-      case CellState.empty:
-        _state = CellState.x;
-        break;
-    }
-    setState(() {});
+    // switch (_state) {
+    //   case CellState.x:
+    //   case CellState.o:
+    //   case CellState.outside:
+    //     break;
+    //   case CellState.empty:
+    //     _state = CellState.x;
+    //     break;
+    // }
+    // setState(() {});
   }
+
+  CellState get _state => widget.game.cellState(widget.x, widget.y);
 
   Widget _getIcon() {
     switch (_state) {
@@ -58,7 +66,7 @@ class _CellState extends State<Cell> {
       onTap: handleTap,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color:_getBorderColor(), width: 0),
+          border: Border.all(color: _getBorderColor(), width: 0),
         ),
         width: _size,
         height: _size,

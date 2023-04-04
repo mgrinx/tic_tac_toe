@@ -15,6 +15,8 @@ class Game {
     board[x][y] = result;
     return result;
   }
+
+  CellState cellState(int x, int y) => board[x][y];
 }
 
 enum CellState {
