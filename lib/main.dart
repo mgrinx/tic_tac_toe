@@ -11,7 +11,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  static const int defaultGridIdx = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +19,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: const MyHomePage(grid: defaultGridIdx),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.grid});
+  const MyHomePage({super.key});
 
   static const String title = 'Flutter Demo Home Page';
-  final int grid;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -37,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final Game _game = Game(boards.entries.toList()[0].value);
+  final ValueNotifier<int> _grid = ValueNotifier<int>(0);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    boards.keys.elementAt(widget.grid),
+                    boards.keys.elementAt(_grid.value),
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
@@ -67,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         context,
                         MaterialPageRoute(
                             // TODO: fix circular reference
-                            builder: (context) => const GridsPage()),
+                            builder: (context) => GridsPage(grid: _grid)),
                       );
                     },
                     child: const Text('Choose grid'),

@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
-import 'main.dart';
 import 'model/boards.dart';
 
-class GridsPage extends StatefulWidget {
-  const GridsPage({super.key});
+class GridsPage extends StatelessWidget {
+  GridsPage({super.key, required this.grid});
 
   static const String title = 'Choose grid';
 
-  @override
-  State<GridsPage> createState() => _GridsPageState();
-}
+  final ValueNotifier<int> grid;
 
-class _GridsPageState extends State<GridsPage> {
-  List boardsList = boards.keys.toList();
+  final List boardsList = boards.keys.toList();
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +31,10 @@ class _GridsPageState extends State<GridsPage> {
                       crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
                       mainAxisSpacing: 2,
                       crossAxisSpacing: 2,
-                      children: List.generate(boardsList.length,
-                          (index) => SelectGrid(grid: index))),
+                      children: List.generate(
+                          boardsList.length,
+                          (index) =>
+                              SelectGrid(grid: index, currentGrid: grid))),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
@@ -53,8 +51,9 @@ class _GridsPageState extends State<GridsPage> {
 }
 
 class SelectGrid extends StatelessWidget {
-  const SelectGrid({super.key, required this.grid});
+  const SelectGrid({super.key, required this.grid, required this.currentGrid});
   final int grid;
+  final ValueNotifier<int> currentGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -64,10 +63,8 @@ class SelectGrid extends StatelessWidget {
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => MyHomePage(grid: grid)),
-          );
+          currentGrid.value = grid;
+          Navigator.pop(context);
         },
         child: Card(
             color: Colors.amber[300],
