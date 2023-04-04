@@ -34,8 +34,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Game _game = Game(boards.entries.toList()[0].value);
-  final ValueNotifier<int> _grid = ValueNotifier<int>(0);
+  static const _initialGrid = 0;
+
+  Game _game = _createGame(_initialGrid);
+  final ValueNotifier<int> _grid = ValueNotifier<int>(_initialGrid);
+
+  @override
+  void initState() {
+    _grid.addListener(() {
+      setState(() {
+        _game = _createGame(_grid.value);
+      });
+    });
+    super.initState();
+  }
+
+  static Game _createGame(int index) {
+    return Game(boards.entries.toList()[index].value);
+  }
 
   @override
   Widget build(BuildContext context) {
