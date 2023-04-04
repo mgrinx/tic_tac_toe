@@ -8,13 +8,22 @@ class Game {
 
   Game(this.board);
 
-  CellState updateCellOnTap(int x, int y) {
+  void updateCellOnTap(int x, int y) {
+    if (cellState(x, y) == CellState.outside) {
+      return;
+    }
+
     final result = nextMove;
-    if (nextMove == CellState.x) nextMove == CellState.o;
-    if (nextMove == CellState.o) nextMove == CellState.x;
+    if (nextMove == CellState.x) {
+      nextMove = CellState.o;
+    } else if (nextMove == CellState.o) {
+      nextMove = CellState.x;
+    }
+
     board[x][y] = result;
-    return result;
   }
+
+  CellState cellState(int x, int y) => board[x][y];
 }
 
 enum CellState {
