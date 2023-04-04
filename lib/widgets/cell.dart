@@ -55,7 +55,7 @@ class _CellViewState extends State<CellView> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: handleTap,
+      onTap: _state == CellState.empty ? handleTap : null,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: _getBorderColor(), width: 0),
