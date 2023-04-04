@@ -10,6 +10,11 @@
 .svn/
 migrate_working_dir/
 
+# Root folders
+android/
+ios/
+logs/
+
 # IntelliJ related
 *.iml
 *.ipr
