@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'model/game.dart';
+import '../model/game.dart';
 
 class CellView extends StatefulWidget {
   const CellView({
