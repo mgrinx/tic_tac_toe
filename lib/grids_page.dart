@@ -5,7 +5,7 @@ import 'model/boards.dart';
 class GridsPage extends StatelessWidget {
   GridsPage({super.key, required this.grid});
 
-  final ValueNotifier<int> grid;
+  final ValueNotifier<String> grid;
 
   final List boardsList = boardTemplates.keys.toList();
 
@@ -32,7 +32,7 @@ class GridsPage extends StatelessWidget {
                       children: List.generate(
                           boardsList.length,
                           (index) =>
-                              SelectGrid(grid: index, currentGrid: grid))),
+                              SelectGrid(grid: boardTemplates.keys.elementAt(index), currentGrid: grid))),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
@@ -50,8 +50,8 @@ class GridsPage extends StatelessWidget {
 
 class SelectGrid extends StatelessWidget {
   const SelectGrid({super.key, required this.grid, required this.currentGrid});
-  final int grid;
-  final ValueNotifier<int> currentGrid;
+  final String grid;
+  final ValueNotifier<String> currentGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class SelectGrid extends StatelessWidget {
             color: Colors.amber[300],
             child: Center(
                 child: Text(
-              boardTemplates.keys.elementAt(grid),
+              grid,
               style: textStyle,
               textAlign: TextAlign.center,
             ))),

@@ -34,10 +34,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const _initialGrid = 0;
+  static const _initialGrid = 'Classic';
 
   Game _game = _createGame(_initialGrid);
-  final ValueNotifier<int> _grid = ValueNotifier<int>(_initialGrid);
+  final ValueNotifier<String> _grid = ValueNotifier<String>(_initialGrid);
 
   @override
   void initState() {
@@ -49,8 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
-  static Game _createGame(int index) {
-    return Game(createBoard(index));
+  static Game _createGame(String boardName) {
+    print('new game');
+    return Game(createBoard(boardName));
   }
 
   @override
@@ -70,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text(
-                    boardTemplates.keys.elementAt(_grid.value),
+                    _grid.value,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
@@ -82,8 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         _game = _createGame(_grid.value);
                       });
                     },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.amber[600]),
                     child: const Text('Reset'),
                   ),
+                  const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
