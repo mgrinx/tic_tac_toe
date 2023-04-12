@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/game.dart';
+import '../styles/colors.dart';
 
 class CellView extends StatefulWidget {
   const CellView({
@@ -46,9 +47,9 @@ class _CellViewState extends State<CellView> {
       case CellState.x:
       case CellState.o:
       case CellState.empty:
-        return Colors.black;
+        return AppColors.board.grid;
       case CellState.outside:
-        return Colors.transparent;
+        return AppColors.general.transparent;
     }
   }
 

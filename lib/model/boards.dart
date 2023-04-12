@@ -1,7 +1,9 @@
 import 'game.dart';
 
+const initialGridName = 'Classic';
+
 final boardTemplates = <String, Board>{
-  'Classic': [
+  initialGridName: [
     [CellState.empty, CellState.empty, CellState.empty],
     [CellState.empty, CellState.empty, CellState.empty],
     [CellState.empty, CellState.empty, CellState.empty],
@@ -13,8 +15,8 @@ final boardTemplates = <String, Board>{
   ]
 };
 
-Board createBoard(int index) {
-  final template = boardTemplates.entries.toList()[index].value;
+Board createBoard(String boardName) {
+  final template = boardTemplates[boardName]!;
   return List.generate(
     template.length,
     (x) => List.generate(

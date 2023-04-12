@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/styles/colors.dart';
 
 import 'model/boards.dart';
 
 class GridsPage extends StatelessWidget {
   GridsPage({super.key, required this.grid});
 
-  final ValueNotifier<int> grid;
+  final ValueNotifier<String> grid;
 
   final List boardsList = boardTemplates.keys.toList();
 
@@ -23,16 +24,14 @@ class GridsPage extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 child: Column(children: <Widget>[
                   GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      primary: true,
-                      crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
-                      mainAxisSpacing: 2,
-                      crossAxisSpacing: 2,
-                      children: List.generate(
-                          boardsList.length,
-                          (index) =>
-                              SelectGrid(grid: index, currentGrid: grid))),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    primary: true,
+                    crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
+                    mainAxisSpacing: 2,
+                    crossAxisSpacing: 2,
+                    children: boardTemplates.keys.map((k) => SelectGrid(grid: k, currentGrid: grid,)).toList(),
+                  ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
@@ -50,8 +49,8 @@ class GridsPage extends StatelessWidget {
 
 class SelectGrid extends StatelessWidget {
   const SelectGrid({super.key, required this.grid, required this.currentGrid});
-  final int grid;
-  final ValueNotifier<int> currentGrid;
+  final String grid;
+  final ValueNotifier<String> currentGrid;
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +64,10 @@ class SelectGrid extends StatelessWidget {
           Navigator.pop(context);
         },
         child: Card(
-            color: Colors.amber[300],
+            color: AppColors.card.background,
             child: Center(
                 child: Text(
-              boardTemplates.keys.elementAt(grid),
+              grid,
               style: textStyle,
               textAlign: TextAlign.center,
             ))),
