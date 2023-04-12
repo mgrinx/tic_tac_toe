@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/styles/colors.dart';
 
 import 'model/boards.dart';
 
@@ -23,16 +24,14 @@ class GridsPage extends StatelessWidget {
                 physics: const ScrollPhysics(),
                 child: Column(children: <Widget>[
                   GridView.count(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      primary: true,
-                      crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
-                      mainAxisSpacing: 2,
-                      crossAxisSpacing: 2,
-                      children: List.generate(
-                          boardsList.length,
-                          (index) =>
-                              SelectGrid(grid: boardTemplates.keys.elementAt(index), currentGrid: grid))),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    primary: true,
+                    crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
+                    mainAxisSpacing: 2,
+                    crossAxisSpacing: 2,
+                    children: boardTemplates.keys.map((k) => SelectGrid(grid: k, currentGrid: grid,)).toList(),
+                  ),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
@@ -65,7 +64,7 @@ class SelectGrid extends StatelessWidget {
           Navigator.pop(context);
         },
         child: Card(
-            color: Colors.amber[300],
+            color: AppColors.card.background,
             child: Center(
                 child: Text(
               grid,

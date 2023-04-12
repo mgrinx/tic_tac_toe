@@ -1,7 +1,9 @@
 import 'game.dart';
 
+const initialGridName = 'Classic';
+
 final boardTemplates = <String, Board>{
-  'Classic': [
+  initialGridName: [
     [CellState.empty, CellState.empty, CellState.empty],
     [CellState.empty, CellState.empty, CellState.empty],
     [CellState.empty, CellState.empty, CellState.empty],

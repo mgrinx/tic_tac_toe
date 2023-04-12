@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/model/game.dart';
+import 'package:tic_tac_toe/styles/colors.dart';
 
 import 'grids_page.dart';
 import 'model/boards.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: AppColors.scaffold.primary,
       ),
       home: const MyHomePage(),
     );
@@ -34,10 +35,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  static const _initialGrid = 'Classic';
-
-  Game _game = _createGame(_initialGrid);
-  final ValueNotifier<String> _grid = ValueNotifier<String>(_initialGrid);
+  Game _game = _createGame(initialGridName);
+  final ValueNotifier<String> _grid = ValueNotifier<String>(initialGridName);
 
   @override
   void initState() {
@@ -50,7 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   static Game _createGame(String boardName) {
-    print('new game');
     return Game(createBoard(boardName));
   }
 
@@ -84,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       });
                     },
                     style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.amber[600]),
+                        backgroundColor: AppColors.button.reset),
                     child: const Text('Reset'),
                   ),
                   const SizedBox(height: 20),
