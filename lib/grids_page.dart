@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/styles/colors.dart';
+import 'package:tic_tac_toe/widgets/board_icon.dart';
 
 import 'model/boards.dart';
 
@@ -30,7 +31,12 @@ class GridsPage extends StatelessWidget {
                     crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
                     mainAxisSpacing: 2,
                     crossAxisSpacing: 2,
-                    children: boardTemplates.keys.map((k) => SelectGrid(grid: k, currentGrid: grid,)).toList(),
+                    children: boardTemplates.keys
+                        .map((k) => SelectGrid(
+                              grid: k,
+                              currentGrid: grid,
+                            ))
+                        .toList(),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -54,7 +60,7 @@ class SelectGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? textStyle = Theme.of(context).textTheme.bodyMedium;
+    final TextStyle textStyle = TextStyle(color: AppColors.card.text);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -66,11 +72,19 @@ class SelectGrid extends StatelessWidget {
         child: Card(
             color: AppColors.card.background,
             child: Center(
-                child: Text(
-              grid,
-              style: textStyle,
-              textAlign: TextAlign.center,
-            ))),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BoardIconView(board: boardTemplates[grid]!),
+                  const SizedBox(height: 20),
+                  Text(
+                    grid,
+                    style: textStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            )),
       ),
     );
   }

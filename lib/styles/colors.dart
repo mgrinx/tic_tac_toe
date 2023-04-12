@@ -17,7 +17,10 @@ class _Button {
 }
 
 class _Card {
-  Color? background = Colors.amber[300];
+  Color? background = Colors.amber[600];
+  Color grid = Colors.black87;
+  Color cell = Colors.white;
+  Color text = Colors.white;
 }
 
 class _Board {
