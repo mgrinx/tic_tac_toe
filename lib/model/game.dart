@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 typedef Board = List<List<CellState>>;
 
+/// A game that holds board value named [board] and the next move value named [nextMove].
+/// 
+/// The game updates cell value using method [updateCellOnTap()]
+/// The game returns the state of a cell using method [cellState()]
 class Game {
   CellState nextMove = CellState.x;
   final Board board;
@@ -26,6 +30,7 @@ class Game {
   CellState cellState(int x, int y) => board[x][y];
 }
 
+/// Holds cell state values and icons
 enum CellState {
   x(Icons.close),
   o(Icons.circle_outlined),

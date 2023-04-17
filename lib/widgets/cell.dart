@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import '../model/game.dart';
 import '../styles/colors.dart';
 
+/// This widget is a game board's cell.
+/// 
+/// It holds the current game and cell coordinates in [game], [x], [y] variables.
 class CellView extends StatefulWidget {
   const CellView({
     super.key,
@@ -19,6 +22,12 @@ class CellView extends StatefulWidget {
   State<CellView> createState() => _CellViewState();
 }
 
+/// This widget is a subclass of CellView and it changes the call state.
+/// 
+/// This widget holds the cell's size named [_size] and the cell state named [_state].
+/// It updates the cell state when the cell is being tapped.
+/// It updates the cell's icon using method [_getIcon()] 
+/// and the cell's boarder using method [_getBorderColor()].
 class _CellViewState extends State<CellView> {
   _CellViewState();
 
