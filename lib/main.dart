@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter-Chat Tic-Tac-Toe',
       theme: ThemeData(
         primarySwatch: AppColors.scaffold.primary,
       ),
@@ -30,14 +30,13 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
-  static const String title = 'Flutter Demo Home Page';
-
+  static const String title = 'Flutter-Chat Tic-Tac-Toe';
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 /// A subclass of MyHomePage.
-/// 
+///
 /// Builds the home page based on [_game] and [_grid] values.
 class _MyHomePageState extends State<MyHomePage> {
   Game _game = _createGame(initialGridName);
