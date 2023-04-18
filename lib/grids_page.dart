@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/styles/colors.dart';
+import 'package:tic_tac_toe/widgets/board_icon.dart';
 
 import 'model/boards.dart';
 
+/// This widget is the page of your application where one chooses a grid for a game.
+///
+/// It holds the list of existing boards names [boardsList] and the chosen grid named [grid].
+/// When [grid] has been changed, the user is returned to the home page, 
+/// and the widget notifies the home page which [grid] value has been chosen.
 class GridsPage extends StatelessWidget {
   GridsPage({super.key, required this.grid});
 
@@ -30,7 +36,12 @@ class GridsPage extends StatelessWidget {
                     crossAxisCount: constraints.maxWidth > 700 ? 4 : 2,
                     mainAxisSpacing: 2,
                     crossAxisSpacing: 2,
-                    children: boardTemplates.keys.map((k) => SelectGrid(grid: k, currentGrid: grid,)).toList(),
+                    children: boardTemplates.keys
+                        .map((k) => SelectGrid(
+                              grid: k,
+                              currentGrid: grid,
+                            ))
+                        .toList(),
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(
@@ -47,6 +58,10 @@ class GridsPage extends StatelessWidget {
   }
 }
 
+/// This widget is a card that display grid and its name.
+/// 
+/// It holds grid name named [grid] and currentGrid values notifier named [currentGrid].
+/// It detects when a mouse click occurs, and notifies the grid page which grid has been selected.
 class SelectGrid extends StatelessWidget {
   const SelectGrid({super.key, required this.grid, required this.currentGrid});
   final String grid;
@@ -54,7 +69,7 @@ class SelectGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle? textStyle = Theme.of(context).textTheme.bodyMedium;
+    final TextStyle textStyle = TextStyle(color: AppColors.card.text);
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
@@ -66,11 +81,19 @@ class SelectGrid extends StatelessWidget {
         child: Card(
             color: AppColors.card.background,
             child: Center(
-                child: Text(
-              grid,
-              style: textStyle,
-              textAlign: TextAlign.center,
-            ))),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  BoardIconView(board: boardTemplates[grid]!),
+                  const SizedBox(height: 20),
+                  Text(
+                    grid,
+                    style: textStyle,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            )),
       ),
     );
   }

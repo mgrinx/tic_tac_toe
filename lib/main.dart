@@ -10,6 +10,7 @@ void main() {
   runApp(const MyApp());
 }
 
+/// This widget is the root of your application.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+/// This widget is the home page of your application.
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -34,6 +36,9 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+/// A subclass of MyHomePage.
+/// 
+/// Builds the home page based on [_game] and [_grid] values.
 class _MyHomePageState extends State<MyHomePage> {
   Game _game = _createGame(initialGridName);
   final ValueNotifier<String> _grid = ValueNotifier<String>(initialGridName);

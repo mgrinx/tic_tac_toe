@@ -1,14 +1,14 @@
 import 'package:flutter/widgets.dart';
 
-import 'cell.dart';
+import 'cell_icon.dart';
 import '../model/game.dart';
 
-/// This widget is a board that shows the game state.
+/// This widget is a board icon.
 /// 
-/// It holds game value named [game].
-class BoardView extends StatelessWidget {
-  const BoardView({super.key, required this.game});
-  final Game game;
+/// It holds board value named [board].
+class BoardIconView extends StatelessWidget {
+  const BoardIconView({super.key, required this.board});
+  final Board board;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class BoardView extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            for (final x in Iterable.generate(game.board.length))
+            for (final x in Iterable.generate(board.length))
               Row(
                 children: [
-                  for (final y in Iterable.generate(game.board[x].length))
-                    CellView(x: x, y: y, game: game),
+                  for (final y in Iterable.generate(board[x].length))
+                    CellIconView(state: board[x][y]),
                 ],
               ),
           ],
