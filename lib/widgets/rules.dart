@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/styles/colors.dart';
 
 import '../model/rules.dart';
 
@@ -15,44 +14,40 @@ class GameRulesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 400),
-      child: ExpansionTile(
-        collapsedBackgroundColor: AppColors.rules.title,
-        childrenPadding:
-            const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-        title: Text(
-          'Game rules',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Text(
+            'For each board you can choose one of the rules variation to play:',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 20),
+          Container(
+              decoration: const BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 1))),
+              child: Text(
+                'Traditional rules',
+                style: Theme.of(context).textTheme.titleMedium,
+              )),
+          SizedBox(height: lineSpacing),
+          Text(gameRules[traditionalKey]!),
+          SizedBox(height: lineSpacing),
+          Container(
+              decoration: const BoxDecoration(
+                  border: Border(bottom: BorderSide(width: 1))),
+              child: Text('Variants with different rules',
+                  style: Theme.of(context).textTheme.titleMedium)),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  decoration: const BoxDecoration(
-                      border: Border(bottom: BorderSide(width: 1))),
-                  child: Text(
-                    'General rules',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  )),
-              SizedBox(height: lineSpacing),
-              Text(GameRules.generalRules()),
-              SizedBox(height: lineSpacing),
-              Container(
-                  decoration: const BoxDecoration(
-                      border: Border(bottom: BorderSide(width: 1))),
-                  child: Text('Variants with different rules',
-                      style: Theme.of(context).textTheme.titleMedium)),
-              SizedBox(height: lineSpacing),
-              const Text('Four-in-a-row',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: lineSpacing),
-              Text(GameRules.fourInARowRules()),
-              SizedBox(height: lineSpacing),
-              const Text('Misere tic-tac-toe',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
-              SizedBox(height: lineSpacing),
-              Text(GameRules.misereRules()),
-            ],
+            children: gameRules.keys.where((k) => k != traditionalKey).map((k) => 
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: lineSpacing),
+                  Text(k, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  SizedBox(height: lineSpacing),
+                  Text( gameRules[k]!),
+                ],
+              )).toList()
           ),
         ],
       ),

@@ -7,7 +7,6 @@ class AppColors {
   static CardColor card = CardColor();
   static BoardColor board = BoardColor();
   static GeneralColor general = GeneralColor();
-  static GameRulesColor rules = GameRulesColor();
 }
 
 /// A scaffold group of colors
@@ -17,12 +16,12 @@ class ScaffoldColor {
 
 /// A button group of colors
 class ButtonColor {
-  Color? reset = Colors.amber[600];
+  Color reset = Colors.amber[600]!;
 }
 
 /// A card group of colors
 class CardColor {
-  Color? background = Colors.amber[600];
+  Color background = Colors.amber[600]!;
   Color grid = Colors.black87;
   Color cell = Colors.white;
   Color text = Colors.white;
