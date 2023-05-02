@@ -7,6 +7,7 @@ class AppColors {
   static CardColor card = CardColor();
   static BoardColor board = BoardColor();
   static GeneralColor general = GeneralColor();
+  static GameRulesColor rules = GameRulesColor();
 }
 
 /// A scaffold group of colors
@@ -35,4 +36,9 @@ class BoardColor {
 /// A general group of colors
 class GeneralColor {
   Color transparent = Colors.transparent;
+}
+
+// A game rules group of colors
+class GameRulesColor {
+  Color title = const Color.fromARGB(255, 223, 225, 225);
 }
