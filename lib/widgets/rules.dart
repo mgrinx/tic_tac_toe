@@ -21,24 +21,8 @@ class GameRulesView extends StatelessWidget {
             'For each board you can choose one of the rules variation to play:',
             style: Theme.of(context).textTheme.titleLarge,
           ),
-          const SizedBox(height: 20),
-          Container(
-              decoration: const BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 1))),
-              child: Text(
-                'Traditional rules',
-                style: Theme.of(context).textTheme.titleMedium,
-              )),
-          SizedBox(height: lineSpacing),
-          Text(gameRules[traditionalKey]!),
-          SizedBox(height: lineSpacing),
-          Container(
-              decoration: const BoxDecoration(
-                  border: Border(bottom: BorderSide(width: 1))),
-              child: Text('Variants with different rules',
-                  style: Theme.of(context).textTheme.titleMedium)),
           Column(
-            children: gameRules.keys.where((k) => k != traditionalKey).map((k) => 
+            children: gameRules.keys.map((k) => 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

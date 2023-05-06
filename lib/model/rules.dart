@@ -1,8 +1,6 @@
-const String traditionalKey = 'Traditional';
-
 /// Holds game rules for different game variations
 const gameRules = <String, String>{
-  traditionalKey:
+  'Traditional':
       'The first player places an X in any square on the board. Players take turns placing an X or an O in one of the squares as in traditional tic-tac-toe. The first player to get three-in-a-row vertically, horizontally, or diagonally wins.',
   'Four-in-a-row':
       'In Four-in-a-row tic-tac-toe, the first player to get four-in-a-row vertically, horizontally, or diagonally wins.',
