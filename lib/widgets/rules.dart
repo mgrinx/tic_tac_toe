@@ -22,14 +22,14 @@ class GameRulesView extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
           Column(
-            children: gameRules.keys.map((k) => 
+            children: gameRules.entries.map((entry) => 
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: lineSpacing),
-                  Text(k, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(entry.key, style: const TextStyle(fontWeight: FontWeight.bold)),
                   SizedBox(height: lineSpacing),
-                  Text( gameRules[k]!),
+                  Text(entry.value),
                 ],
               )).toList()
           ),
