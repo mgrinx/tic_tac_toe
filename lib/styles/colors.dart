@@ -2,37 +2,42 @@ import 'package:flutter/material.dart';
 
 /// An app colors grouped by widgets
 class AppColors {
-  static _Scaffold scaffold = _Scaffold();
-  static _Button button = _Button();
-  static _Card card = _Card();
-  static _Board board = _Board();
-  static _General general = _General();
+  static ScaffoldColor scaffold = ScaffoldColor();
+  static ButtonColor button = ButtonColor();
+  static CardColor card = CardColor();
+  static BoardColor board = BoardColor();
+  static GeneralColor general = GeneralColor();
 }
 
 /// A scaffold group of colors
-class _Scaffold {
+class ScaffoldColor {
   MaterialColor primary = Colors.pink;
 }
 
 /// A button group of colors
-class _Button {
-  Color? reset = Colors.amber[600];
+class ButtonColor {
+  Color reset = Colors.amber[600]!;
 }
 
 /// A card group of colors
-class _Card {
-  Color? background = Colors.amber[600];
+class CardColor {
+  Color background = Colors.amber[600]!;
   Color grid = Colors.black87;
   Color cell = Colors.white;
   Color text = Colors.white;
 }
 
 /// A board group of colors
-class _Board {
+class BoardColor {
   Color grid = Colors.black;
 }
 
 /// A general group of colors
-class _General {
+class GeneralColor {
   Color transparent = Colors.transparent;
+}
+
+// A game rules group of colors
+class GameRulesColor {
+  Color title = const Color.fromARGB(255, 223, 225, 225);
 }
