@@ -38,16 +38,16 @@ class MyHomePage extends StatefulWidget {
 
 /// A subclass of MyHomePage.
 ///
-/// Builds the home page based on [Game2] and [_grid] values.
+/// Builds the home page based on [_game] and [_grid] values.
 class _MyHomePageState extends State<MyHomePage> {
-  Game Game2 = _createGame(initialGridName);
+  Game _game = _createGame(initialGridName);
   final ValueNotifier<String> _grid = ValueNotifier<String>(initialGridName);
 
   @override
   void initState() {
     _grid.addListener(() {
       setState(() {
-        Game2 = _createGame(_grid.value);
+        _game = _createGame(_grid.value);
       });
     });
     super.initState();
@@ -78,12 +78,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
-                  BoardView(game: Game2),
+                  BoardView(game: _game),
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        Game2 = _createGame(_grid.value);
+                        _game = _createGame(_grid.value);
                       });
                     },
                     style: ElevatedButton.styleFrom(
