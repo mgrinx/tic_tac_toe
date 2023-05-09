@@ -8,3 +8,9 @@ https://flutter-chat-tic-tac-toe.web.app
 flutter build web
 firebase deploy --only hosting
 ```
+
+## Regenerate diagrams
+
+```
+dart run layerlens
+```
