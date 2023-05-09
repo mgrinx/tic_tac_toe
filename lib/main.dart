@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/model/game.dart';
 import 'package:tic_tac_toe/styles/colors.dart';
+import 'package:tic_tac_toe/widgets/rules.dart';
 
 import 'grids_page.dart';
 import 'model/boards.dart';
@@ -100,6 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     child: const Text('Choose grid'),
                   ),
+                  const SizedBox(height: 40),
+                  const GameRulesView()
                 ],
               ),
             ),
