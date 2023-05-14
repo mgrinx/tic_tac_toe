@@ -42,14 +42,22 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Game _game = _createGame(initialGridName);
   final ValueNotifier<String> _grid = ValueNotifier<String>(initialGridName);
+  late ValueNotifier<Coordinates> _lastMove;
 
   @override
   void initState() {
     _grid.addListener(() {
       setState(() {
         _game = _createGame(_grid.value);
+        _lastMove.value = null;
       });
     });
+
+    _lastMove = ValueNotifier<Coordinates>(_game.lastMove);
+    _lastMove.addListener(() {
+      setState(() {});
+    });
+
     super.initState();
   }
 
@@ -78,17 +86,37 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(height: 20),
-                  BoardView(game: _game),
+                  BoardView(game: _game, lastMove: _lastMove),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        _game = _createGame(_grid.value);
-                      });
-                    },
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.button.reset),
-                    child: const Text('Reset'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: _lastMove.value == null
+                            ? null
+                            : () {
+                                _game.stepBack();
+                                setState(() {
+                                  _lastMove.value = null;
+                                });
+                              },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.button.stepBack),
+                        child: const Text('Step back')
+                      ),
+                      const SizedBox(width: 10),
+                      ElevatedButton(
+                        onPressed: () {
+                          setState(() {
+                            _game = _createGame(_grid.value);
+                            _lastMove.value = null;
+                          });
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.button.reset),
+                        child: const Text('Reset'),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 20),
                   ElevatedButton(

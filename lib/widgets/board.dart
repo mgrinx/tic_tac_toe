@@ -7,8 +7,9 @@ import '../model/game.dart';
 /// 
 /// It holds game value named [game].
 class BoardView extends StatelessWidget {
-  const BoardView({super.key, required this.game});
+  const BoardView({super.key, required this.game, required this.lastMove});
   final Game game;
+  final ValueNotifier<Coordinates> lastMove;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class BoardView extends StatelessWidget {
               Row(
                 children: [
                   for (final y in Iterable.generate(game.board[x].length))
-                    CellView(x: x, y: y, game: game),
+                    CellView(x: x, y: y, game: game, lastMove: lastMove),
                 ],
               ),
           ],
