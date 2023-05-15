@@ -9,7 +9,7 @@ import '../model/game.dart';
 class BoardView extends StatelessWidget {
   const BoardView({super.key, required this.game, required this.lastMove});
   final Game game;
-  final ValueNotifier<Coordinates> lastMove;
+  final ValueNotifier<Coordinates?> lastMove;
 
   @override
   Widget build(BuildContext context) {

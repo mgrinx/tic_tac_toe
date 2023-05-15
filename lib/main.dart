@@ -42,7 +42,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   Game _game = _createGame(initialGridName);
   final ValueNotifier<String> _grid = ValueNotifier<String>(initialGridName);
-  late ValueNotifier<Coordinates> _lastMove;
+  final ValueNotifier<Coordinates?> _lastMove = ValueNotifier(null);
 
   @override
   void initState() {
@@ -53,7 +53,6 @@ class _MyHomePageState extends State<MyHomePage> {
       });
     });
 
-    _lastMove = ValueNotifier<Coordinates>(_game.lastMove);
     _lastMove.addListener(() {
       setState(() {});
     });

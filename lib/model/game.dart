@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 typedef Board = List<List<CellState>>;
-typedef Coordinates = ({int x, int y})?;
+typedef Coordinates = ({int x, int y});
 
 
 /// A game that holds board value named [board] and the next move value named [nextMove].
@@ -10,7 +10,7 @@ typedef Coordinates = ({int x, int y})?;
 /// The game returns the state of a cell using method [cellState()]
 class Game {
   CellState nextMove = CellState.x;
-  Coordinates lastMove;
+  Coordinates? lastMove;
   final Board board;
 
   Game(this.board);

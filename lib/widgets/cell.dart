@@ -18,7 +18,7 @@ class CellView extends StatefulWidget {
   final Game game;
   final int x;
   final int y;
-  final ValueNotifier<Coordinates> lastMove;
+  final ValueNotifier<Coordinates?> lastMove;
 
   @override
   State<CellView> createState() => _CellViewState();
