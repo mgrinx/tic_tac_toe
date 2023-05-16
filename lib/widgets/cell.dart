@@ -11,14 +11,12 @@ class CellView extends StatefulWidget {
     super.key,
     required this.game,
     required this.x,
-    required this.y,
-    required this.lastMove
+    required this.y
   });
 
   final Game game;
   final int x;
   final int y;
-  final ValueNotifier<Coordinates?> lastMove;
 
   @override
   State<CellView> createState() => _CellViewState();
@@ -38,7 +36,6 @@ class _CellViewState extends State<CellView> {
   void handleTap() {
     widget.game.updateCellOnTap(widget.x, widget.y);
     setState(() {});
-    widget.lastMove.value = widget.game.lastMove;
   }
 
   CellState get _state => widget.game.cellState(widget.x, widget.y);

@@ -10,7 +10,7 @@ typedef Coordinates = ({int x, int y});
 /// The game returns the state of a cell using method [cellState()]
 class Game {
   CellState nextMove = CellState.x;
-  Coordinates? lastMove;
+  ValueNotifier<Coordinates?> lastMove = ValueNotifier(null);
   final Board board;
 
   Game(this.board);
@@ -29,11 +29,11 @@ class Game {
 
     board[x][y] = result;
 
-    lastMove = (x: x, y: y);
+    lastMove.value = (x: x, y: y);
   }
 
   void stepBack() {
-    if (lastMove == null) return;
+    if (lastMove.value == null) return;
 
     if (nextMove == CellState.x) {
       nextMove = CellState.o;
@@ -41,9 +41,9 @@ class Game {
       nextMove = CellState.x;
     }
 
-    board[lastMove!.x][lastMove!.y] = CellState.empty;
+    board[lastMove.value!.x][lastMove.value!.y] = CellState.empty;
 
-    lastMove = null;
+    lastMove.value = null;
   }
 
   CellState cellState(int x, int y) => board[x][y];
