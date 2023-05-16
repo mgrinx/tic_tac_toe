@@ -11,7 +11,7 @@ class CellView extends StatefulWidget {
     super.key,
     required this.game,
     required this.x,
-    required this.y,
+    required this.y
   });
 
   final Game game;

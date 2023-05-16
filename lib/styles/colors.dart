@@ -17,6 +17,7 @@ class ScaffoldColor {
 /// A button group of colors
 class ButtonColor {
   Color reset = Colors.amber[600]!;
+  Color stepBack = Colors.amber[600]!;
 }
 
 /// A card group of colors
