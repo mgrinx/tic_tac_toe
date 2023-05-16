@@ -19,25 +19,23 @@ class _GameViewState extends State<GameView> {
 
   @override
   void initState() {
-    _game = _createGame(initialGridName);
+    _createGame();
 
     _grid.addListener(() {
-      setState(() {
-        _game = _createGame(_grid.value);
-      });
+      _createGame();
     });
 
     super.initState();
   }
 
-  Game _createGame(String boardName) {
-    Game newGame = Game(createBoard(boardName));
+  void _createGame() {
+    _game = Game(createBoard(_grid.value));
 
-    newGame.lastMove.addListener(() {
+    _game.lastMove.addListener(() {
       setState(() {});
     });
 
-    return newGame;
+    setState(() {});
   }
 
   @override
@@ -61,9 +59,6 @@ class _GameViewState extends State<GameView> {
                     ? null
                     : () {
                         _game.stepBack();
-                        setState(() {
-                          _game.lastMove.value = null;
-                        });
                       },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.button.stepBack),
@@ -71,10 +66,7 @@ class _GameViewState extends State<GameView> {
             const SizedBox(width: 10),
             ElevatedButton(
               onPressed: () {
-                setState(() {
-                  _game = _createGame(_grid.value);
-                  _game.lastMove.value = null;
-                });
+                _createGame();
               },
               style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.button.reset),
