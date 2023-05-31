@@ -1,8 +1,5 @@
 name: Run layerlens.
 
-permissions:
-  actions: write
-
 on:
   push:
     branches: [ main]
