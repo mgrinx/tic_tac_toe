@@ -12,10 +12,10 @@ jobs:
     - name: clone the repo
       uses: actions/checkout@v3
 
-    - name: install dart sdk
-      uses: dart-lang/setup-dart@v1.3
+    - name: install Flutter sdk
+      uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa
       with:
-        sdk: dev
+        channel: 'stable'
 
     - name: version
       run: dart --version
