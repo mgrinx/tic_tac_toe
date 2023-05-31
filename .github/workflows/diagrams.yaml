@@ -38,4 +38,4 @@ jobs:
       if: github.ref == 'refs/heads/main'
       uses: ad-m/github-push-action@df39337088a4cf2782a73f221bbd33f90e3e091d
       with:
-        github_token: ${{ secrets.PAT }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
